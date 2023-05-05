@@ -377,4 +377,5 @@ pub fn process_reads(
         let idx = chrom_lookup.get(&rname).unwrap();
         write_output(&mut out, &rname, &chroms[*idx], &counts);
     }
+    out.flush().unwrap();
 }
