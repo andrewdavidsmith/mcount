@@ -56,7 +56,7 @@ fn main() -> ExitCode {
         eprintln!("[output file={}]", args.out);
     }
 
-    let (names, mut chroms) = mcount::read_fasta(&args.genome).unwrap();
+    let (names, mut chroms) = mcounts::read_fasta(&args.genome).unwrap();
 
     // ADS: probably should move this stuff into lib.rs?
 
@@ -65,7 +65,7 @@ fn main() -> ExitCode {
         .for_each(|i| (*i).iter_mut()
                   .for_each(|j| (*j).make_ascii_uppercase()));
 
-    mcount::process_reads(args.verbose, args.reads,
+    mcounts::process_reads(args.verbose, args.reads,
                           args.out, names, chroms);
 
     ExitCode::SUCCESS
