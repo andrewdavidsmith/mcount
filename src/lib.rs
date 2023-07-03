@@ -330,17 +330,16 @@ pub fn process_reads(
 
         // if chrom changes, output previous results, get new one
         if aln.tid() != tid {
-            if aln.tid() != tid {
-                if !valid_names.contains(aln.contig()) {
-                    eprintln!("chrom seq not found: {}", aln.contig());
-                    std::process::exit(1);
-                }
-                if chroms_seen.contains(&aln.tid()) {
-                    eprintln!("reads from same chrom not consecutive");
-                    std::process::exit(1);
-                }
-                chroms_seen.insert(aln.tid());
+            if !valid_names.contains(aln.contig()) {
+                eprintln!("chrom seq not found: {}", aln.contig());
+                std::process::exit(1);
             }
+            if chroms_seen.contains(&aln.tid()) {
+                eprintln!("reads from same chrom not consecutive");
+                std::process::exit(1);
+            }
+            chroms_seen.insert(aln.tid());
+
             if !counts.is_empty() {
                 let idx = chrom_lookup[&rname] as usize;
                 write_output(&mut out, &rname, &chroms[idx], &counts);
