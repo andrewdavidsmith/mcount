@@ -8,5 +8,5 @@ edition = "2021"
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
 rust-htslib = { version = "*", default-features = false }
-bio-types = { version = "0.13.0" }
+bio-types = { version = "1.0.0" }
 msite = { git = "https://github.com/andrewdavidsmith/msite" }
